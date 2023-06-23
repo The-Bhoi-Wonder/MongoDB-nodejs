@@ -10,7 +10,17 @@ export default function Movies({ movies }) {
             <ul>
                 {movies.map((movie) => (
                     <li>
-                        <h2>{movie.title}</h2>
+                        <h2>
+                            {movie.title}  
+                        </h2>
+                        <h2>
+                       <img 
+                                src={movie.poster}
+                                alt = "No poster found"
+                                width={300}
+                                height={400}
+                            />
+                        </h2>
                         <h3>{movie.metacritic}</h3>
                         <p>{movie.plot}</p>
                     </li>
@@ -31,6 +41,7 @@ export async function getServerSideProps() {
             .sort({ metacritic: -1 })
             .limit(20)
             .toArray();
+
 
         return {
             props: { movies: JSON.parse(JSON.stringify(movies)) },
